@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://bq6nfenj7e64p"]
+
+[ext_resource type="FontFile" uid="uid://dfgn0uutngcun" path="res://assets/fonts/IBM_Plex_Sans/static/IBMPlexSans-Bold.ttf" id="1_1g8jr"]
+[ext_resource type="Script" uid="uid://dtvhxolk8wbec" path="res://scenes/ui/main_menu.gd" id="1_sl1te"]
+[ext_resource type="AudioStream" uid="uid://bx78rqkgi408x" path="res://assets/audio/OPERATION HELLTHORN.mp3" id="2_fe2o3"]
+[ext_resource type="FontFile" uid="uid://du4gy4xnh5by8" path="res://assets/fonts/IBM_Plex_Sans/static/IBMPlexSans-SemiBold.ttf" id="3_m1kxf"]
+
+[sub_resource type="Theme" id="Theme_fe2o3"]
+default_font = ExtResource("1_1g8jr")
+
+[node name="Control" type="Control" unique_id=1212851654]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fe2o3")
+script = ExtResource("1_sl1te")
+
+[node name="Background" type="ColorRect" parent="." unique_id=778794786]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16678691, 0.17383641, 0.022874717, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1198208068]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel" type="VBoxContainer" parent="CenterContainer" unique_id=900812480]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Label_Name_Game" type="Label" parent="CenterContainer/MainPanel" unique_id=1364650186]
+layout_mode = 2
+theme_override_constants/line_spacing = 1
+theme_override_fonts/font = ExtResource("3_m1kxf")
+theme_override_font_sizes/font_size = 28
+text = "C.D. : HELLTHORN"
+
+[node name="Button_Play" type="Button" parent="CenterContainer/MainPanel" unique_id=547832692]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Play"
+
+[node name="Button_Settings" type="Button" parent="CenterContainer/MainPanel" unique_id=1660039877]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Settings"
+
+[node name="Button_Exit" type="Button" parent="CenterContainer/MainPanel" unique_id=1452932463]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Exit"
+
+[node name="SettingsPanel" type="VBoxContainer" parent="CenterContainer" unique_id=347308875]
+visible = false
+custom_maximum_size = Vector2(220, 140)
+layout_mode = 2
+
+[node name="Label_Volume" type="Label" parent="CenterContainer/SettingsPanel" unique_id=1817261200]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/SettingsPanel" unique_id=770397311]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+value = 100.0
+metadata/_edit_group_ = true
+
+[node name="Button_Back" type="Button" parent="CenterContainer/SettingsPanel" unique_id=1656729735]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Back"
+
+[node name="Label_Settings" type="Label" parent="CenterContainer/SettingsPanel" unique_id=1088537613]
+layout_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=219668905]
+stream = ExtResource("2_fe2o3")
+autoplay = true
+parameters/looping = false
+
+[connection signal="pressed" from="CenterContainer/MainPanel/Button_Play" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/Button_Settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/MainPanel/Button_Exit" to="." method="_on_button_exit_pressed"]
+[connection signal="value_changed" from="CenterContainer/SettingsPanel/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="CenterContainer/SettingsPanel/Button_Back" to="." method="_on_button_back_pressed"]
