@@ -1,39 +1,83 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://ce1agyvdwpgjn"]
 
-[ext_resource type="Script" path="res://scenes/levels/level_01.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dbjjod0kokhmx" path="res://scenes/levels/level_01.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://2s5vo6w7kxvw" path="res://scenes/entities/player.tscn" id="2_player"]
 
-[node name="Level01" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="RectangleShape2D" id="Shape_TopBottom"]
+size = Vector2(424, 24)
+
+[sub_resource type="RectangleShape2D" id="Shape_LeftRight"]
+size = Vector2(24, 276)
+
+[node name="Level01" type="Node2D" unique_id=125064251]
 script = ExtResource("1_script")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Player" parent="." unique_id=1646450866 instance=ExtResource("2_player")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-layout_mode = 2
+[node name="Wall_Top" type="StaticBody2D" parent="." unique_id=1675262138]
+position = Vector2(0, -150)
+collision_layer = 4
 
-[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Top" unique_id=1529449727]
+shape = SubResource("Shape_TopBottom")
+
+[node name="Visual" type="Polygon2D" parent="Wall_Top" unique_id=829701431]
+color = Color(0.18, 0.2, 0.23, 1)
+polygon = PackedVector2Array(-212, -12, 212, -12, 212, 12, -212, 12)
+
+[node name="Wall_Bottom" type="StaticBody2D" parent="." unique_id=895093093]
+position = Vector2(0, 150)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Bottom" unique_id=58835419]
+shape = SubResource("Shape_TopBottom")
+
+[node name="Visual" type="Polygon2D" parent="Wall_Bottom" unique_id=166133883]
+color = Color(0.18, 0.2, 0.23, 1)
+polygon = PackedVector2Array(-212, -12, 212, -12, 212, 12, -212, 12)
+
+[node name="Wall_Left" type="StaticBody2D" parent="." unique_id=1423148491]
+position = Vector2(-200, 0)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Left" unique_id=1877538127]
+shape = SubResource("Shape_LeftRight")
+
+[node name="Visual" type="Polygon2D" parent="Wall_Left" unique_id=541585729]
+color = Color(0.18, 0.2, 0.23, 1)
+polygon = PackedVector2Array(-12, -138, 12, -138, 12, 138, -12, 138)
+
+[node name="Wall_Right" type="StaticBody2D" parent="." unique_id=274638261]
+position = Vector2(200, 0)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Right" unique_id=1772825694]
+shape = SubResource("Shape_LeftRight")
+
+[node name="Visual" type="Polygon2D" parent="Wall_Right" unique_id=1917654487]
+color = Color(0.18, 0.2, 0.23, 1)
+polygon = PackedVector2Array(-12, -138, 12, -138, 12, 138, -12, 138)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=289680824]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1236973672]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 230.0
+offset_bottom = 105.0
+
+[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1181380699]
 layout_mode = 2
 text = "LEVEL 01 — MOUNTAIN HQ"
 horizontal_alignment = 1
 
-[node name="Placeholder" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Placeholder" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1958665792]
 layout_mode = 2
 text = "Level under construction"
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=166435080]
 layout_mode = 2
 text = "Back to menu"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

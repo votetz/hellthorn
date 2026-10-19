@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bx78rqkgi408x"
+path="res://.godot/imported/OPERATION HELLTHORN.mp3-603fa57896cc18fe9ec81fdc5579d7ba.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/menu/OPERATION HELLTHORN.mp3"
+dest_files=["res://.godot/imported/OPERATION HELLTHORN.mp3-603fa57896cc18fe9ec81fdc5579d7ba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
