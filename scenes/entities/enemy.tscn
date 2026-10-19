@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://d1vmrc5q3w0va"]
+
+[ext_resource type="PackedScene" uid="uid://bdafpqxucucal" path="res://scenes/components/health_component.tscn" id="1_health"]
+[ext_resource type="Script" uid="uid://b5s1d3jcrq501" path="res://scenes/entities/hurtbox.gd" id="2_hurtbox"]
+[ext_resource type="Script" uid="uid://crgxg77nycoms" path="res://scenes/entities/enemy.gd" id="3_enemy"]
+[ext_resource type="Script" uid="uid://c3wypya6fs1wa" path="res://scenes/entities/states/enemy_state.gd" id="4_enemy_state"]
+[ext_resource type="Script" uid="uid://du7rowlxgfli3" path="res://scenes/entities/states/patrol_state.gd" id="5_patrol_state"]
+[ext_resource type="Script" uid="uid://5cjc2ecu6wqh" path="res://scenes/entities/states/chase_state.gd" id="6_chase_state"]
+[ext_resource type="Script" uid="uid://b7h5k8ke3uoj1" path="res://scenes/entities/states/search_state.gd" id="7_search_state"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hm8jm"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_enemy_hurtbox"]
+radius = 12.0
+
+[node name="Enemy" type="CharacterBody2D" unique_id=44447084]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("3_enemy")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1882056348]
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+mouse_filter = 2
+color = Color(0.85, 0.2, 0.2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1345576630]
+shape = SubResource("CircleShape2D_hm8jm")
+
+[node name="HealthComponent" parent="." unique_id=371889619 instance=ExtResource("1_health")]
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=2126152108]
+collision_layer = 2
+collision_mask = 8
+script = ExtResource("2_hurtbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=264597114]
+shape = SubResource("CircleShape2D_enemy_hurtbox")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1647470265]
+
+[node name="Patrol" type="Node" parent="StateMachine" unique_id=282457647]
+script = ExtResource("5_patrol_state")
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=2074160121]
+script = ExtResource("6_chase_state")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1518110287]
+script = ExtResource("4_enemy_state")
+
+[node name="Search" type="Node" parent="StateMachine" unique_id=835540486]
+script = ExtResource("7_search_state")
+
+[node name="VisionCone" type="Area2D" parent="." unique_id=86600074]
+collision_layer = 128
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionCone" unique_id=1199157690]
+polygon = PackedVector2Array(0, 0, -150, -70, -150, 70)
+
+[node name="DebugPolygon" type="Polygon2D" parent="VisionCone" unique_id=928545797]
+z_index = -1
+color = Color(1, 0.8, 0.1, 0.2)
+
+[node name="DebugOutline" type="Line2D" parent="VisionCone" unique_id=1019446034]
+z_index = -1
+width = 2.0
+default_color = Color(1, 0.8, 0.1, 0.85)
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
