@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://2s5vo6w7kxvw"]
+
+[ext_resource type="Script" uid="uid://cym1v3yv8as2j" path="res://scenes/entities/player.gd" id="1_08t41"]
+[ext_resource type="Texture2D" uid="uid://yq6vya307js7" path="res://assets/arts/main_character/cartoon-soldier-man-vector.jpg" id="1_ucweq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nlrdh"]
+radius = 12.0
+
+[node name="Player" type="CharacterBody2D" unique_id=497166927]
+collision_mask = 4
+script = ExtResource("1_08t41")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1228564762]
+position = Vector2(0.5, 5.9604645e-08)
+scale = Vector2(0.021428572, 0.024489796)
+texture = ExtResource("1_ucweq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=495093439]
+shape = SubResource("CircleShape2D_nlrdh")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=99459294]
+position_smoothing_enabled = true
