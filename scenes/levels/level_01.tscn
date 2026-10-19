@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbjjod0kokhmx" path="res://scenes/levels/level_01.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://2s5vo6w7kxvw" path="res://scenes/entities/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://d1vmrc5q3w0va" path="res://scenes/entities/enemy.tscn" id="3_2djvx"]
 
 [sub_resource type="RectangleShape2D" id="Shape_TopBottom"]
 size = Vector2(424, 24)
@@ -13,6 +14,9 @@ size = Vector2(24, 276)
 script = ExtResource("1_script")
 
 [node name="Player" parent="." unique_id=1646450866 instance=ExtResource("2_player")]
+
+[node name="Enemy" parent="." unique_id=44447084 instance=ExtResource("3_2djvx")]
+position = Vector2(100, 0)
 
 [node name="Wall_Top" type="StaticBody2D" parent="." unique_id=1675262138]
 position = Vector2(0, -150)
@@ -60,6 +64,15 @@ polygon = PackedVector2Array(-12, -138, 12, -138, 12, 138, -12, 138)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=289680824]
 
+[node name="DamageFlash" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1236973672]
 offset_left = 20.0
 offset_top = 20.0
@@ -81,3 +94,4 @@ layout_mode = 2
 text = "Back to menu"
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="health_changed" from="Player/HealthComponent" to="." method="_on_player_health_changed"]

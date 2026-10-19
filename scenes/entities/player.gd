@@ -27,3 +27,7 @@ func shoot() -> void:
 	get_parent().add_child(bullet)
 	bullet.global_position = global_position + shot_direction * 8.0
 	bullet.direction = shot_direction
+
+
+func _on_health_component_died() -> void:
+	get_tree().change_scene_to_file("res://scenes/ui/hud/main_menu.tscn")
