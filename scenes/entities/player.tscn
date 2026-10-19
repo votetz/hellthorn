@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://2s5vo6w7kxvw"]
 
 [ext_resource type="Script" uid="uid://cym1v3yv8as2j" path="res://scenes/entities/player.gd" id="1_08t41"]
-[ext_resource type="Texture2D" uid="uid://yq6vya307js7" path="res://assets/arts/main_character/cartoon-soldier-man-vector.jpg" id="1_ucweq"]
+[ext_resource type="Texture2D" path="res://assets/arts/main_character/sven_detailed_legs_fixed_v1.png" id="1_ucweq"]
 [ext_resource type="PackedScene" uid="uid://bdafpqxucucal" path="res://scenes/components/health_component.tscn" id="3_1ie0h"]
 [ext_resource type="Script" uid="uid://b5s1d3jcrq501" path="res://scenes/entities/hurtbox.gd" id="4_42nxq"]
+[ext_resource type="Script" uid="uid://b6hs4nws74i74" path="res://scenes/entities/weapons/pistol.gd" id="5_d4qa6"]
+[ext_resource type="PackedScene" uid="uid://cxkofoeqexnbj" path="res://scenes/entities/projectiles/bullet.tscn" id="6_ss7kx"]
+[ext_resource type="Texture2D" path="res://assets/arts/weapons/glock_top_reload_sheet.png" id="7_glock"]
+[ext_resource type="Shader" path="res://assets/arts/weapons/white_background_key.gdshader" id="8_white_key"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nlrdh"]
 radius = 12.0
@@ -11,19 +15,24 @@ radius = 12.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_Hurtbox"]
 radius = 12.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_white_key"]
+shader = ExtResource("8_white_key")
+
 [node name="Player" type="CharacterBody2D" unique_id=497166927]
 collision_mask = 4
 script = ExtResource("1_08t41")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1228564762]
-position = Vector2(0.5, 5.9604645e-08)
-scale = Vector2(0.021428572, 0.024489796)
+texture_filter = 2
+rotation = 1.5707964
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("1_ucweq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=495093439]
 shape = SubResource("CircleShape2D_nlrdh")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=99459294]
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="HealthComponent" parent="." unique_id=78555137 instance=ExtResource("3_1ie0h")]
@@ -34,5 +43,20 @@ script = ExtResource("4_42nxq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1491001720]
 shape = SubResource("CircleShape2D_Hurtbox")
+
+[node name="Pistol" type="Node2D" parent="." unique_id=963662156]
+position = Vector2(17, 0)
+script = ExtResource("5_d4qa6")
+bullet_scene = ExtResource("6_ss7kx")
+
+[node name="WeaponSprite" type="Sprite2D" parent="Pistol"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_white_key")
+position = Vector2(0, 2)
+rotation = 1.5707964
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("7_glock")
+region_enabled = true
+region_rect = Rect2(228, 74, 132, 375)
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
