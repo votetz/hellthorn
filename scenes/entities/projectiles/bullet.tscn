@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cxkofoeqexnbj"]
+
+[ext_resource type="Script" uid="uid://cd1gk4b2ue0bp" path="res://scenes/entities/projectiles/bullet.gd" id="1_lhort"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hm8jm"]
+radius = 3.0
+
+[node name="Bullet" type="Area2D" unique_id=702215095]
+collision_layer = 8
+collision_mask = 6
+script = ExtResource("1_lhort")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=479729396]
+shape = SubResource("CircleShape2D_hm8jm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1119955868]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+mouse_filter = 2
+color = Color(1, 0.9, 0.35, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
