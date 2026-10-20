@@ -2,65 +2,220 @@
 
 [ext_resource type="Script" uid="uid://dbjjod0kokhmx" path="res://scenes/levels/level_01.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://2s5vo6w7kxvw" path="res://scenes/entities/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" uid="uid://d1vmrc5q3w0va" path="res://scenes/entities/enemy.tscn" id="3_2djvx"]
+[ext_resource type="PackedScene" uid="uid://d1vmrc5q3w0va" path="res://scenes/entities/enemy.tscn" id="3_enemy"]
 
-[sub_resource type="RectangleShape2D" id="Shape_TopBottom"]
-size = Vector2(424, 24)
+[sub_resource type="RectangleShape2D" id="LongWall"]
+size = Vector2(240, 16)
 
-[sub_resource type="RectangleShape2D" id="Shape_LeftRight"]
-size = Vector2(24, 276)
+[sub_resource type="RectangleShape2D" id="SideWall"]
+size = Vector2(16, 176)
+
+[sub_resource type="RectangleShape2D" id="DoorSideWall"]
+size = Vector2(24, 16)
+
+[sub_resource type="RectangleShape2D" id="MapEdgeH"]
+size = Vector2(1120, 20)
+
+[sub_resource type="RectangleShape2D" id="MapEdgeV"]
+size = Vector2(20, 600)
 
 [node name="Level01" type="Node2D" unique_id=125064251]
 script = ExtResource("1_script")
 
 [node name="Player" parent="." unique_id=1646450866 instance=ExtResource("2_player")]
-
-[node name="Enemy" parent="." unique_id=44447084 instance=ExtResource("3_2djvx")]
-position = Vector2(100, 0)
-
-[node name="Wall_Top" type="StaticBody2D" parent="." unique_id=1675262138]
-position = Vector2(0, -150)
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Top" unique_id=1529449727]
-shape = SubResource("Shape_TopBottom")
-
-[node name="Visual" type="Polygon2D" parent="Wall_Top" unique_id=829701431]
-color = Color(0.18, 0.2, 0.23, 1)
-polygon = PackedVector2Array(-212, -12, 212, -12, 212, 12, -212, 12)
-
-[node name="Wall_Bottom" type="StaticBody2D" parent="." unique_id=895093093]
 position = Vector2(0, 150)
+
+[node name="Enemy_HQ_Left" parent="." unique_id=44447084 instance=ExtResource("3_enemy")]
+position = Vector2(-300, -75)
+
+[node name="Enemy_HQ_Right" parent="." instance=ExtResource("3_enemy")]
+position = Vector2(-220, -75)
+
+[node name="Enemy_Storehouse_Left" parent="." instance=ExtResource("3_enemy")]
+position = Vector2(180, -75)
+
+[node name="Enemy_Storehouse_Right" parent="." instance=ExtResource("3_enemy")]
+position = Vector2(260, -75)
+
+[node name="Main_Approach" type="Polygon2D" parent="."]
+z_index = -3
+color = Color(0.35, 0.42, 0.31, 1)
+polygon = PackedVector2Array(-28, 150, 28, 150, 28, -12, -28, -12)
+
+[node name="HQ_Approach" type="Polygon2D" parent="."]
+z_index = -3
+color = Color(0.35, 0.42, 0.31, 1)
+polygon = PackedVector2Array(-260, 12, -20, 12, -20, 36, -260, 36)
+
+[node name="Depot_Approach" type="Polygon2D" parent="."]
+z_index = -3
+color = Color(0.35, 0.42, 0.31, 1)
+polygon = PackedVector2Array(20, 12, 230, 12, 230, 36, 20, 36)
+
+[node name="HQ_Floor" type="Polygon2D" parent="."]
+position = Vector2(-260, -80)
+z_index = -2
+color = Color(0.24, 0.29, 0.34, 1)
+polygon = PackedVector2Array(-112, -76, 112, -76, 112, 76, -112, 76)
+
+[node name="HQ_Interior" type="Polygon2D" parent="."]
+position = Vector2(-260, -80)
+z_index = -1
+color = Color(0.31, 0.37, 0.42, 1)
+polygon = PackedVector2Array(-100, -64, 100, -64, 100, 64, -100, 64)
+
+[node name="HQ_Walls" type="StaticBody2D" parent="."]
+position = Vector2(-260, -80)
+z_index = 1
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Bottom" unique_id=58835419]
-shape = SubResource("Shape_TopBottom")
+[node name="NorthCollision" type="CollisionShape2D" parent="HQ_Walls"]
+position = Vector2(0, -80)
+shape = SubResource("LongWall")
 
-[node name="Visual" type="Polygon2D" parent="Wall_Bottom" unique_id=166133883]
-color = Color(0.18, 0.2, 0.23, 1)
-polygon = PackedVector2Array(-212, -12, 212, -12, 212, 12, -212, 12)
+[node name="NorthVisual" type="Polygon2D" parent="HQ_Walls"]
+position = Vector2(0, -80)
+color = Color(0.28, 0.36, 0.43, 1)
+polygon = PackedVector2Array(-120, -8, 120, -8, 120, 8, -120, 8)
 
-[node name="Wall_Left" type="StaticBody2D" parent="." unique_id=1423148491]
-position = Vector2(-200, 0)
+[node name="WestCollision" type="CollisionShape2D" parent="HQ_Walls"]
+position = Vector2(-120, 0)
+shape = SubResource("SideWall")
+
+[node name="WestVisual" type="Polygon2D" parent="HQ_Walls"]
+position = Vector2(-120, 0)
+color = Color(0.28, 0.36, 0.43, 1)
+polygon = PackedVector2Array(-8, -88, 8, -88, 8, 88, -8, 88)
+
+[node name="EastCollision" type="CollisionShape2D" parent="HQ_Walls"]
+position = Vector2(120, 0)
+shape = SubResource("SideWall")
+
+[node name="EastVisual" type="Polygon2D" parent="HQ_Walls"]
+position = Vector2(120, 0)
+color = Color(0.28, 0.36, 0.43, 1)
+polygon = PackedVector2Array(-8, -88, 8, -88, 8, 88, -8, 88)
+
+[node name="SouthWestCollision" type="CollisionShape2D" parent="HQ_Walls"]
+position = Vector2(-108, 80)
+shape = SubResource("DoorSideWall")
+
+[node name="SouthWestVisual" type="Polygon2D" parent="HQ_Walls"]
+position = Vector2(-108, 80)
+color = Color(0.28, 0.36, 0.43, 1)
+polygon = PackedVector2Array(-12, -8, 12, -8, 12, 8, -12, 8)
+
+[node name="SouthEastCollision" type="CollisionShape2D" parent="HQ_Walls"]
+position = Vector2(108, 80)
+shape = SubResource("DoorSideWall")
+
+[node name="SouthEastVisual" type="Polygon2D" parent="HQ_Walls"]
+position = Vector2(108, 80)
+color = Color(0.28, 0.36, 0.43, 1)
+polygon = PackedVector2Array(-12, -8, 12, -8, 12, 8, -12, 8)
+
+[node name="HQ_Label" type="Label" parent="."]
+offset_left = -350.0
+offset_top = -202.0
+offset_right = -170.0
+offset_bottom = -176.0
+text = "MOUNTAIN HQ"
+horizontal_alignment = 1
+
+[node name="Storehouse_Floor" type="Polygon2D" parent="."]
+position = Vector2(230, -80)
+z_index = -2
+color = Color(0.38, 0.3, 0.22, 1)
+polygon = PackedVector2Array(-112, -76, 112, -76, 112, 76, -112, 76)
+
+[node name="Storehouse_Interior" type="Polygon2D" parent="."]
+position = Vector2(230, -80)
+z_index = -1
+color = Color(0.48, 0.38, 0.26, 1)
+polygon = PackedVector2Array(-100, -64, 100, -64, 100, 64, -100, 64)
+
+[node name="Storehouse_Walls" type="StaticBody2D" parent="."]
+position = Vector2(230, -80)
+z_index = 1
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Left" unique_id=1877538127]
-shape = SubResource("Shape_LeftRight")
+[node name="NorthCollision" type="CollisionShape2D" parent="Storehouse_Walls"]
+position = Vector2(0, -80)
+shape = SubResource("LongWall")
 
-[node name="Visual" type="Polygon2D" parent="Wall_Left" unique_id=541585729]
-color = Color(0.18, 0.2, 0.23, 1)
-polygon = PackedVector2Array(-12, -138, 12, -138, 12, 138, -12, 138)
+[node name="NorthVisual" type="Polygon2D" parent="Storehouse_Walls"]
+position = Vector2(0, -80)
+color = Color(0.55, 0.43, 0.29, 1)
+polygon = PackedVector2Array(-120, -8, 120, -8, 120, 8, -120, 8)
 
-[node name="Wall_Right" type="StaticBody2D" parent="." unique_id=274638261]
-position = Vector2(200, 0)
+[node name="WestCollision" type="CollisionShape2D" parent="Storehouse_Walls"]
+position = Vector2(-120, 0)
+shape = SubResource("SideWall")
+
+[node name="WestVisual" type="Polygon2D" parent="Storehouse_Walls"]
+position = Vector2(-120, 0)
+color = Color(0.55, 0.43, 0.29, 1)
+polygon = PackedVector2Array(-8, -88, 8, -88, 8, 88, -8, 88)
+
+[node name="EastCollision" type="CollisionShape2D" parent="Storehouse_Walls"]
+position = Vector2(120, 0)
+shape = SubResource("SideWall")
+
+[node name="EastVisual" type="Polygon2D" parent="Storehouse_Walls"]
+position = Vector2(120, 0)
+color = Color(0.55, 0.43, 0.29, 1)
+polygon = PackedVector2Array(-8, -88, 8, -88, 8, 88, -8, 88)
+
+[node name="SouthWestCollision" type="CollisionShape2D" parent="Storehouse_Walls"]
+position = Vector2(-108, 80)
+shape = SubResource("DoorSideWall")
+
+[node name="SouthWestVisual" type="Polygon2D" parent="Storehouse_Walls"]
+position = Vector2(-108, 80)
+color = Color(0.55, 0.43, 0.29, 1)
+polygon = PackedVector2Array(-12, -8, 12, -8, 12, 8, -12, 8)
+
+[node name="SouthEastCollision" type="CollisionShape2D" parent="Storehouse_Walls"]
+position = Vector2(108, 80)
+shape = SubResource("DoorSideWall")
+
+[node name="SouthEastVisual" type="Polygon2D" parent="Storehouse_Walls"]
+position = Vector2(108, 80)
+color = Color(0.55, 0.43, 0.29, 1)
+polygon = PackedVector2Array(-12, -8, 12, -8, 12, 8, -12, 8)
+
+[node name="Storehouse_Label" type="Label" parent="."]
+offset_left = 140.0
+offset_top = -202.0
+offset_right = 320.0
+offset_bottom = -176.0
+text = "SUPPLY DEPOT"
+horizontal_alignment = 1
+
+[node name="SpawnMarker" type="Polygon2D" parent="."]
+position = Vector2(0, 150)
+z_index = -1
+color = Color(0.75, 0.82, 0.64, 1)
+polygon = PackedVector2Array(0, -20, 14, 0, 0, 20, -14, 0)
+
+[node name="MapBounds" type="StaticBody2D" parent="."]
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall_Right" unique_id=1772825694]
-shape = SubResource("Shape_LeftRight")
+[node name="NorthEdge" type="CollisionShape2D" parent="MapBounds"]
+position = Vector2(0, -300)
+shape = SubResource("MapEdgeH")
 
-[node name="Visual" type="Polygon2D" parent="Wall_Right" unique_id=1917654487]
-color = Color(0.18, 0.2, 0.23, 1)
-polygon = PackedVector2Array(-12, -138, 12, -138, 12, 138, -12, 138)
+[node name="SouthEdge" type="CollisionShape2D" parent="MapBounds"]
+position = Vector2(0, 300)
+shape = SubResource("MapEdgeH")
+
+[node name="WestEdge" type="CollisionShape2D" parent="MapBounds"]
+position = Vector2(-560, 0)
+shape = SubResource("MapEdgeV")
+
+[node name="EastEdge" type="CollisionShape2D" parent="MapBounds"]
+position = Vector2(560, 0)
+shape = SubResource("MapEdgeV")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=289680824]
 
@@ -76,7 +231,7 @@ color = Color(1, 0, 0, 0)
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1236973672]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 230.0
+offset_right = 260.0
 offset_bottom = 105.0
 
 [node name="Title" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1181380699]
@@ -86,7 +241,7 @@ horizontal_alignment = 1
 
 [node name="Placeholder" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1958665792]
 layout_mode = 2
-text = "Level under construction"
+text = "Clear the HQ and Supply Depot"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=166435080]
