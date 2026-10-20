@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0hjjwx6wlojq"
-path="res://.godot/imported/sven_detailed_legs_fixed_v1.png-53519b52c0ca8bdcb0d3bc58e5098ed2.ctex"
+uid="uid://dwl0koa5kedr4"
+path="res://.godot/imported/sven_detailed_no_rear_kneepads_v2.png-c848d0bc3025c5f9a6607457cbcd2a1e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/arts/main_character/sven_detailed_legs_fixed_v1.png"
-dest_files=["res://.godot/imported/sven_detailed_legs_fixed_v1.png-53519b52c0ca8bdcb0d3bc58e5098ed2.ctex"]
+source_file="res://assets/arts/main_character/sven_detailed_no_rear_kneepads_v2.png"
+dest_files=["res://.godot/imported/sven_detailed_no_rear_kneepads_v2.png-c848d0bc3025c5f9a6607457cbcd2a1e.ctex"]
 
 [params]
 

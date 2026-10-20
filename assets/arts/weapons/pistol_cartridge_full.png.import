@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yq6vya307js7"
-path="res://.godot/imported/cartoon-soldier-man-vector.jpg-4cf9ad7491b3d8710e36d2ba2e40a66c.ctex"
+uid="uid://v4v7yvnr5t7o"
+path="res://.godot/imported/pistol_cartridge_full.png-4deca691a2751a95f935c1921fd9e0f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/arts/main_character/cartoon-soldier-man-vector.jpg"
-dest_files=["res://.godot/imported/cartoon-soldier-man-vector.jpg-4cf9ad7491b3d8710e36d2ba2e40a66c.ctex"]
+source_file="res://assets/arts/weapons/pistol_cartridge_full.png"
+dest_files=["res://.godot/imported/pistol_cartridge_full.png-4deca691a2751a95f935c1921fd9e0f2.ctex"]
 
 [params]
 

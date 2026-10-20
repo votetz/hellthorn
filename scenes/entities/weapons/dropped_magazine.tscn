@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/arts/weapons/glock_magazine_source.png" id="1_magazine"]
+[ext_resource type="Shader" path="res://assets/arts/weapons/white_background_key.gdshader" id="2_white_key"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_white_key"]
+shader = ExtResource("2_white_key")
+
+[node name="DroppedMagazine" type="Sprite2D"]
+texture_filter = 1
+z_index = -1
+material = SubResource("ShaderMaterial_white_key")
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("1_magazine")
+region_enabled = true
+region_rect = Rect2(616, 384, 50, 108)

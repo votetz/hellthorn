@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co3figvpktkp6"
-path="res://.godot/imported/sven_detailed_reference.png-212154a25a279e74375fc7c96ec01eb3.ctex"
+uid="uid://c2ftr0j0wgw3u"
+path="res://.godot/imported/glock_magazine_source.png-ca50fd2ff196c2dea1e7db75977b5872.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/arts/main_character/sven_detailed_reference.png"
-dest_files=["res://.godot/imported/sven_detailed_reference.png-212154a25a279e74375fc7c96ec01eb3.ctex"]
+source_file="res://assets/arts/weapons/glock_magazine_source.png"
+dest_files=["res://.godot/imported/glock_magazine_source.png-ca50fd2ff196c2dea1e7db75977b5872.ctex"]
 
 [params]
 

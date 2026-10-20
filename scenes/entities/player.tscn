@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://2s5vo6w7kxvw"]
 
 [ext_resource type="Script" uid="uid://cym1v3yv8as2j" path="res://scenes/entities/player.gd" id="1_08t41"]
-[ext_resource type="Texture2D" path="res://assets/arts/main_character/sven_detailed_legs_fixed_v1.png" id="1_ucweq"]
+[ext_resource type="Texture2D" uid="uid://dwl0koa5kedr4" path="res://assets/arts/main_character/sven_detailed_no_rear_kneepads_v2.png" id="1_ucweq"]
 [ext_resource type="PackedScene" uid="uid://bdafpqxucucal" path="res://scenes/components/health_component.tscn" id="3_1ie0h"]
 [ext_resource type="Script" uid="uid://b5s1d3jcrq501" path="res://scenes/entities/hurtbox.gd" id="4_42nxq"]
 [ext_resource type="Script" uid="uid://b6hs4nws74i74" path="res://scenes/entities/weapons/pistol.gd" id="5_d4qa6"]
 [ext_resource type="PackedScene" uid="uid://cxkofoeqexnbj" path="res://scenes/entities/projectiles/bullet.tscn" id="6_ss7kx"]
-[ext_resource type="Texture2D" path="res://assets/arts/weapons/glock_top_reload_sheet.png" id="7_glock"]
-[ext_resource type="Shader" path="res://assets/arts/weapons/white_background_key.gdshader" id="8_white_key"]
+[ext_resource type="Texture2D" uid="uid://dho7w6lkt4vhb" path="res://assets/arts/weapons/glock_top_reload_sheet.png" id="7_glock"]
+[ext_resource type="Shader" uid="uid://r7fnnqjkhjtp" path="res://assets/arts/weapons/white_background_key.gdshader" id="8_white_key"]
+[ext_resource type="AudioStream" uid="uid://biqyoy0ak1vse" path="res://assets/audio/sfx/weapons/pistol_suppressed_shot.wav" id="9_shot"]
+[ext_resource type="AudioStream" uid="uid://b5wspx6v6waj5" path="res://assets/audio/sfx/weapons/pistol_reload.wav" id="10_reload"]
+[ext_resource type="AudioStream" uid="uid://d2bpnmmoxovef" path="res://assets/audio/sfx/weapons/pistol_empty_click.wav" id="11_empty"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nlrdh"]
 radius = 12.0
@@ -49,14 +52,29 @@ position = Vector2(17, 0)
 script = ExtResource("5_d4qa6")
 bullet_scene = ExtResource("6_ss7kx")
 
-[node name="WeaponSprite" type="Sprite2D" parent="Pistol"]
+[node name="ShotPlayer" type="AudioStreamPlayer2D" parent="Pistol" unique_id=639229985]
+stream = ExtResource("9_shot")
+volume_db = -3.0
+max_distance = 600.0
+
+[node name="EmptyPlayer" type="AudioStreamPlayer2D" parent="Pistol" unique_id=2041441719]
+stream = ExtResource("11_empty")
+volume_db = -6.0
+max_distance = 500.0
+
+[node name="ReloadPlayer" type="AudioStreamPlayer2D" parent="Pistol" unique_id=157575935]
+stream = ExtResource("10_reload")
+volume_db = -6.0
+max_distance = 500.0
+
+[node name="WeaponSprite" type="Sprite2D" parent="Pistol" unique_id=845067813]
 texture_filter = 2
 material = SubResource("ShaderMaterial_white_key")
-position = Vector2(0, 2)
+position = Vector2(2, 0)
 rotation = 1.5707964
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("7_glock")
 region_enabled = true
-region_rect = Rect2(228, 74, 132, 375)
+region_rect = Rect2(70, 74, 50, 320)
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

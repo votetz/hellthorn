@@ -7,6 +7,7 @@ class_name Bullet
 var direction: Vector2 = Vector2.RIGHT
 
 func _physics_process(delta: float) -> void:
+	rotation = direction.angle() + PI / 2.0
 	var next_position := global_position + direction * speed * delta
 	var query := PhysicsRayQueryParameters2D.create(
 		global_position, next_position, collision_mask
